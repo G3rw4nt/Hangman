@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/krzys/AndroidStudioProjects/Hangman/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/krzys/AndroidStudioProjects/Hangman/app/src/main/res/layout-land/activity_main.xml" value="0.21164021164021163" />
+        <entry key="..\:/Users/krzys/AndroidStudioProjects/Hangman/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/krzys/Downloads/Hangman-basic_functionalities/app/src/main/res/layout-land/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/krzys/Downloads/Hangman-basic_functionalities/app/src/main/res/layout/activity_language.xml" value="0.22146739130434784" />
+        <entry key="..\:/Users/krzys/Downloads/Hangman-basic_functionalities/app/src/main/res/layout/activity_main.xml" value="0.22146739130434784" />
+        <entry key="..\:/Users/krzys/Downloads/Hangman-basic_functionalities/app/src/main/res/menu/menu.xml" value="0.25" />
       </map>
     </option>
   </component>

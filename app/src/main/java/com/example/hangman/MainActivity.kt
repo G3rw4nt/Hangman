@@ -1,14 +1,14 @@
 package com.example.hangman
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,17 +22,19 @@ class MainActivity : AppCompatActivity() {
     lateinit var usedLettersTv: TextView
     lateinit var wordToFindTv:TextView
     lateinit var gallows:ImageView
-    lateinit var spinner:Spinner
+    lateinit var spinner: Spinner
     lateinit var spinnerValue:String
+    lateinit var actualLanguage:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         gallows = findViewById(R.id.hangmanView)
-        stringArray = resources.getStringArray(R.array.words)
         gallows.setImageResource(R.drawable.hangman_gray)
         wordToFindTv = findViewById(R.id.word)
         usedLettersTv = findViewById(R.id.usedLetters)
         spinner = findViewById(R.id.difficultySpinner)
+        stringArray = resources.getStringArray(R.array.words)
+        actualLanguage = "English"
         val restart:FloatingActionButton = findViewById(R.id.restartButton)
         val a: Button = findViewById(R.id.a)
         val b: Button = findViewById(R.id.b)
@@ -60,35 +62,56 @@ class MainActivity : AppCompatActivity() {
         val x: Button = findViewById(R.id.x)
         val y: Button = findViewById(R.id.y)
         val z: Button = findViewById(R.id.z)
-        restart.setOnClickListener{startGame()}
-        a.setOnClickListener{touchLetter('a')}
-        b.setOnClickListener{touchLetter('b')}
-        c.setOnClickListener{touchLetter('c')}
-        d.setOnClickListener{touchLetter('d')}
-        e.setOnClickListener{touchLetter('e')}
-        f.setOnClickListener{touchLetter('f')}
-        g.setOnClickListener{touchLetter('g')}
-        h.setOnClickListener{touchLetter('h')}
-        i.setOnClickListener{touchLetter('i')}
-        j.setOnClickListener{touchLetter('j')}
-        k.setOnClickListener{touchLetter('k')}
-        l.setOnClickListener{touchLetter('l')}
-        m.setOnClickListener{touchLetter('m')}
-        n.setOnClickListener{touchLetter('n')}
-        o.setOnClickListener{touchLetter('o')}
-        p.setOnClickListener{touchLetter('p')}
-        q.setOnClickListener{touchLetter('q')}
-        r.setOnClickListener{touchLetter('r')}
-        s.setOnClickListener{touchLetter('s')}
-        t.setOnClickListener{touchLetter('t')}
-        u.setOnClickListener{touchLetter('u')}
-        v.setOnClickListener{touchLetter('v')}
-        w.setOnClickListener{touchLetter('w')}
-        x.setOnClickListener{touchLetter('x')}
-        y.setOnClickListener{touchLetter('y')}
-        z.setOnClickListener{touchLetter('z')}
+        restart.setOnClickListener{newGame()}
+        a.setOnClickListener{clickLetter('a')}
+        b.setOnClickListener{clickLetter('b')}
+        c.setOnClickListener{clickLetter('c')}
+        d.setOnClickListener{clickLetter('d')}
+        e.setOnClickListener{clickLetter('e')}
+        f.setOnClickListener{clickLetter('f')}
+        g.setOnClickListener{clickLetter('g')}
+        h.setOnClickListener{clickLetter('h')}
+        i.setOnClickListener{clickLetter('i')}
+        j.setOnClickListener{clickLetter('j')}
+        k.setOnClickListener{clickLetter('k')}
+        l.setOnClickListener{clickLetter('l')}
+        m.setOnClickListener{clickLetter('m')}
+        n.setOnClickListener{clickLetter('n')}
+        o.setOnClickListener{clickLetter('o')}
+        p.setOnClickListener{clickLetter('p')}
+        q.setOnClickListener{clickLetter('q')}
+        r.setOnClickListener{clickLetter('r')}
+        s.setOnClickListener{clickLetter('s')}
+        t.setOnClickListener{clickLetter('t')}
+        u.setOnClickListener{clickLetter('u')}
+        v.setOnClickListener{clickLetter('v')}
+        w.setOnClickListener{clickLetter('w')}
+        x.setOnClickListener{clickLetter('x')}
+        y.setOnClickListener{clickLetter('y')}
+        z.setOnClickListener{clickLetter('z')}
+
+
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.languageSettings ->{
+                val intent = Intent(this@MainActivity, LanguageActivity::class.java)
+                actualLanguage = intent.getStringExtra("actualLanguage").toString()
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
     fun updatePicture(mistakes:Int):Void?
     {
         when(mistakes){
@@ -111,23 +134,23 @@ class MainActivity : AppCompatActivity() {
     fun getRandomWord(difficulty:String):String{
         lateinit var finalWord:String
         when(difficulty){
-            "Easy" -> {
+            "Easy" ->{
                 var word:String = "template"
-                while(word.length > 5) {
+                while(word.length > 5){
                     word = stringArray[java.util.Random().nextInt(stringArray.size)]
                 }
                 finalWord = word
             }
-            "Normal" -> {
+            "Normal" ->{
                 var word:String = "tmp"
-                while(word.length < 5 || word.length >= 10) {
+                while(word.length <= 5 || word.length >= 10){
                     word = stringArray[java.util.Random().nextInt(stringArray.size)]
                 }
                 finalWord = word
             }
-            "Hard" -> {
+            "Hard" ->{
                 var word:String = "temp"
-                while(word.length < 10) {
+                while(word.length < 10){
                     word = stringArray[java.util.Random().nextInt(stringArray.size)]
                 }
                 finalWord = word
@@ -136,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         return finalWord
     }
 
-    fun startGame():Void?
+    fun newGame():Void?
     {
         gameOver = false
         mistakes = 0
@@ -155,11 +178,11 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    fun wordFound():Boolean{
+    fun isWordFound():Boolean{
         return wordToFind.contentEquals(word.toString())
     }
 
-    fun enter(c:Char):Void?{
+    fun letterCheck(c:Char):Void?{
         if(wordToFind.contains(c)){
             var index = wordToFind.indexOf(c)
 
@@ -175,20 +198,20 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    fun touchLetter(c:Char):Void?{
+    fun clickLetter(c:Char):Void?{
         if(mistakes < MAX_MISTAKES && !gameOver && !usedLetters.contains(c))
         {
             usedLettersTv.text = usedLettersTv.text.toString()+c.toString()
             usedLetters.append(c)
-            enter(c)
+            letterCheck(c)
             updatePicture(mistakes)
 
-            if(wordFound()){
+            if(isWordFound()){
                 gameOver = true
                 val alert = AlertDialog.Builder(this)
                 alert.setTitle("You won!")
                 alert.setMessage("The word was "+wordToFind)
-                alert.setPositiveButton("Restart"){dialog, which->startGame()}
+                alert.setPositiveButton("Restart"){dialog, which->newGame()}
                 alert.show()
             }
             else{
@@ -197,7 +220,7 @@ class MainActivity : AppCompatActivity() {
                     val alert = AlertDialog.Builder(this)
                     alert.setTitle("You lost!")
                     alert.setMessage("The word was "+wordToFind)
-                    alert.setPositiveButton("Restart"){dialog, which->startGame()}
+                    alert.setPositiveButton("Restart"){dialog, which->newGame()}
                     alert.show()
                 }
             }
