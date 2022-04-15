@@ -11,19 +11,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="40dp" />
+        app:layout_constraintGuide_begin="1dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="273dp" />
+        app:layout_constraintGuide_begin="176dp" />
 
     <ImageView
         android:id="@+id/hangmanView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="190dp"
+        android:layout_height="144dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
@@ -41,16 +41,17 @@
     <TextView
         android:id="@+id/word"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:text="Press restart to start new game!"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/restartButton"
@@ -90,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="40dp" />
+        app:layout_constraintGuide_end="366dp" />
 
     <TextView
         android:id="@+id/RestartText"
@@ -109,8 +110,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8">
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="0.663">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -315,8 +318,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginRight="2dp"
-                android:text="W"
-                android:textSize="14sp" />
+                android:text="W" />
 
             <Button
                 android:id="@+id/x"
@@ -349,20 +351,22 @@
         android:id="@+id/difficultySpinner"
         android:layout_width="225dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:entries="@array/difficultySpinnerEntries"
         android:spinnerMode="dialog"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline7" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="@+id/guideline10" />
 
     <TextView
         android:id="@+id/usedLetters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline8"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toBottomOf="@+id/word" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
