@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Hangman</string>
-    <string-array name="words">
+    <string-array name="wordsEN">
         <item>the</item>
         <item>be</item>
         <item>of</item>
@@ -5442,6 +5442,78 @@
         <item>quantum</item>
         <item>reformer</item>
         <item>wildly</item>
+    </string-array>
+    <string-array name="wordsPL">
+        <item>alba</item>
+        <item>anemia</item>
+        <item>anihilacja</item>
+        <item>baba</item>
+        <item>beduin</item>
+        <item>blanszowany</item>
+        <item>cygan</item>
+        <item>ciekawy</item>
+        <item>cynkownia</item>
+        <item>dach</item>
+        <item>dorobek</item>
+        <item>dworzanin</item>
+        <item>ebola</item>
+        <item>eskapada</item>
+        <item>ekwipunek</item>
+        <item>fach</item>
+        <item>frajda</item>
+        <item>fotografia</item>
+        <item>gad</item>
+        <item>gnat</item>
+        <item>geostrefa</item>
+        <item>hiena</item>
+        <item>haubica</item>
+        <item>halabarda</item>
+        <item>irys</item>
+        <item>irysek</item>
+        <item>imigranci</item>
+        <item>jacht</item>
+        <item>joginka</item>
+        <item>jonosfera</item>
+        <item>kat</item>
+        <item>kreszowy</item>
+        <item>krewetkowy</item>
+        <item>loft</item>
+        <item>logopeda</item>
+        <item>legowisko</item>
+        <item>masa</item>
+        <item>miednica</item>
+        <item>monarchia</item>
+        <item>nasz</item>
+        <item>niemal</item>
+        <item>niemczanin</item>
+        <item>oczy</item>
+        <item>odczucie</item>
+        <item>orkiestra</item>
+        <item>pisak</item>
+        <item>polanka</item>
+        <item>pisarstwo</item>
+        <item>rak</item>
+        <item>remisja</item>
+        <item>rozbrojony</item>
+        <item>sok</item>
+        <item>stolica</item>
+        <item>skarbnica</item>
+        <item>tura</item>
+        <item>tabaka</item>
+        <item>torpedowy</item>
+        <item>ul</item>
+        <item>ustalony</item>
+        <item>ustatkowany</item>
+        <item>waga</item>
+        <item>wachlarz</item>
+        <item>wspomnienia</item>
+        <item>yerba</item>
+        <item>youtuber</item>
+        <item>yachting</item>
+        <item>zlot</item>
+        <item>zabieg</item>
+        <item>zbawienie</item>
+
     </string-array>
 
 </resources>
