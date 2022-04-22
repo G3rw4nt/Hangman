@@ -1,14 +1,18 @@
 package com.example.hangman
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     var mistakes = 0
     var wordToFind:String = ""
     var gameOver:Boolean = true
+    val REQUEST_CODE:Int = 1
     lateinit var word: StringBuilder
     lateinit var usedLetters: StringBuilder
     lateinit var usedLettersTv: TextView
@@ -25,6 +30,85 @@ class MainActivity : AppCompatActivity() {
     lateinit var spinner: Spinner
     lateinit var spinnerValue:String
     lateinit var actualLanguage:String
+
+    lateinit var  a: Button
+    lateinit var  b: Button
+    lateinit var  c: Button
+    lateinit var  d: Button
+    lateinit var  e: Button
+    lateinit var  f: Button
+    lateinit var  g: Button
+    lateinit var  h: Button
+    lateinit var  i: Button
+    lateinit var  j: Button
+    lateinit var  k: Button
+    lateinit var  l: Button
+    lateinit var  m: Button
+    lateinit var  n: Button
+    lateinit var  o: Button
+    lateinit var  p: Button
+    lateinit var  q: Button
+    lateinit var  r: Button
+    lateinit var  s: Button
+    lateinit var  t: Button
+    lateinit var  u: Button
+    lateinit var  v: Button
+    lateinit var  w: Button
+    lateinit var  x: Button
+    lateinit var  y: Button
+    lateinit var  z: Button
+
+    private var format: String = "English"
+
+
+    fun colorReset():Void?
+    {
+        a.setBackgroundColor(Color.BLUE)
+        b.setBackgroundColor(Color.BLUE)
+        c.setBackgroundColor(Color.BLUE)
+        d.setBackgroundColor(Color.BLUE)
+        e.setBackgroundColor(Color.BLUE)
+        f.setBackgroundColor(Color.BLUE)
+        g.setBackgroundColor(Color.BLUE)
+        h.setBackgroundColor(Color.BLUE)
+        i.setBackgroundColor(Color.BLUE)
+        j.setBackgroundColor(Color.BLUE)
+        k.setBackgroundColor(Color.BLUE)
+        l.setBackgroundColor(Color.BLUE)
+        m.setBackgroundColor(Color.BLUE)
+        n.setBackgroundColor(Color.BLUE)
+        o.setBackgroundColor(Color.BLUE)
+        p.setBackgroundColor(Color.BLUE)
+        q.setBackgroundColor(Color.BLUE)
+        r.setBackgroundColor(Color.BLUE)
+        s.setBackgroundColor(Color.BLUE)
+        t.setBackgroundColor(Color.BLUE)
+        u.setBackgroundColor(Color.BLUE)
+        v.setBackgroundColor(Color.BLUE)
+        w.setBackgroundColor(Color.BLUE)
+        x.setBackgroundColor(Color.BLUE)
+        y.setBackgroundColor(Color.BLUE)
+        z.setBackgroundColor(Color.BLUE)
+
+
+        return null
+    }
+    private val launchLanguageActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if(result.resultCode == RESULT_OK){
+            format = result.data?.getStringExtra(getString(R.string.numberFormatKey)) ?: "English"
+            Snackbar.make(findViewById(R.id.mainContainer), format, Snackbar.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun startLanguageActivity() {
+        val intent = Intent(this,LanguageActivity::class.java)
+
+        intent.putExtra(getString(R.string.numberFormatKey),format)
+
+        launchLanguageActivity.launch(intent)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,64 +117,89 @@ class MainActivity : AppCompatActivity() {
         wordToFindTv = findViewById(R.id.word)
         usedLettersTv = findViewById(R.id.usedLetters)
         spinner = findViewById(R.id.difficultySpinner)
-        stringArray = resources.getStringArray(R.array.words)
+        stringArray = resources.getStringArray(R.array.wordsEN)
         actualLanguage = "English"
         val restart:FloatingActionButton = findViewById(R.id.restartButton)
-        val a: Button = findViewById(R.id.a)
-        val b: Button = findViewById(R.id.b)
-        val c: Button = findViewById(R.id.c)
-        val d: Button = findViewById(R.id.d)
-        val e: Button = findViewById(R.id.e)
-        val f: Button = findViewById(R.id.f)
-        val g: Button = findViewById(R.id.g)
-        val h: Button = findViewById(R.id.h)
-        val i: Button = findViewById(R.id.i)
-        val j: Button = findViewById(R.id.j)
-        val k: Button = findViewById(R.id.k)
-        val l: Button = findViewById(R.id.l)
-        val m: Button = findViewById(R.id.m)
-        val n: Button = findViewById(R.id.n)
-        val o: Button = findViewById(R.id.o)
-        val p: Button = findViewById(R.id.p)
-        val q: Button = findViewById(R.id.q)
-        val r: Button = findViewById(R.id.r)
-        val s: Button = findViewById(R.id.s)
-        val t: Button = findViewById(R.id.t)
-        val u: Button = findViewById(R.id.u)
-        val v: Button = findViewById(R.id.v)
-        val w: Button = findViewById(R.id.w)
-        val x: Button = findViewById(R.id.x)
-        val y: Button = findViewById(R.id.y)
-        val z: Button = findViewById(R.id.z)
+        a = findViewById(R.id.a)
+         b = findViewById(R.id.b)
+         c = findViewById(R.id.c)
+         d = findViewById(R.id.d)
+         e = findViewById(R.id.e)
+         f = findViewById(R.id.f)
+         g = findViewById(R.id.g)
+         h = findViewById(R.id.h)
+         i = findViewById(R.id.i)
+         j = findViewById(R.id.j)
+         k = findViewById(R.id.k)
+         l = findViewById(R.id.l)
+         m = findViewById(R.id.m)
+         n = findViewById(R.id.n)
+         o = findViewById(R.id.o)
+         p = findViewById(R.id.p)
+         q = findViewById(R.id.q)
+         r = findViewById(R.id.r)
+         s = findViewById(R.id.s)
+         t = findViewById(R.id.t)
+         u = findViewById(R.id.u)
+         v = findViewById(R.id.v)
+         w = findViewById(R.id.w)
+         x = findViewById(R.id.x)
+         y = findViewById(R.id.y)
+         z = findViewById(R.id.z)
+        colorReset()
         restart.setOnClickListener{newGame()}
-        a.setOnClickListener{clickLetter('a')}
-        b.setOnClickListener{clickLetter('b')}
-        c.setOnClickListener{clickLetter('c')}
-        d.setOnClickListener{clickLetter('d')}
-        e.setOnClickListener{clickLetter('e')}
-        f.setOnClickListener{clickLetter('f')}
-        g.setOnClickListener{clickLetter('g')}
-        h.setOnClickListener{clickLetter('h')}
-        i.setOnClickListener{clickLetter('i')}
-        j.setOnClickListener{clickLetter('j')}
-        k.setOnClickListener{clickLetter('k')}
-        l.setOnClickListener{clickLetter('l')}
-        m.setOnClickListener{clickLetter('m')}
-        n.setOnClickListener{clickLetter('n')}
-        o.setOnClickListener{clickLetter('o')}
-        p.setOnClickListener{clickLetter('p')}
-        q.setOnClickListener{clickLetter('q')}
-        r.setOnClickListener{clickLetter('r')}
-        s.setOnClickListener{clickLetter('s')}
-        t.setOnClickListener{clickLetter('t')}
-        u.setOnClickListener{clickLetter('u')}
-        v.setOnClickListener{clickLetter('v')}
-        w.setOnClickListener{clickLetter('w')}
-        x.setOnClickListener{clickLetter('x')}
-        y.setOnClickListener{clickLetter('y')}
-        z.setOnClickListener{clickLetter('z')}
-
-
+        a.setOnClickListener{clickLetter('a')
+            a.setBackgroundColor(Color.RED)}
+        b.setOnClickListener{clickLetter('b')
+            b.setBackgroundColor(Color.RED)}
+        c.setOnClickListener{clickLetter('c')
+            c.setBackgroundColor(Color.RED)}
+        d.setOnClickListener{clickLetter('d')
+            d.setBackgroundColor(Color.RED)}
+        e.setOnClickListener{clickLetter('e')
+            e.setBackgroundColor(Color.RED)}
+        f.setOnClickListener{clickLetter('f')
+            f.setBackgroundColor(Color.RED)}
+        g.setOnClickListener{clickLetter('g')
+            g.setBackgroundColor(Color.RED)}
+        h.setOnClickListener{clickLetter('h')
+            h.setBackgroundColor(Color.RED)}
+        i.setOnClickListener{clickLetter('i')
+            i.setBackgroundColor(Color.RED)}
+        j.setOnClickListener{clickLetter('j')
+            j.setBackgroundColor(Color.RED)}
+        k.setOnClickListener{clickLetter('k')
+            k.setBackgroundColor(Color.RED)}
+        l.setOnClickListener{clickLetter('l')
+            l.setBackgroundColor(Color.RED)}
+        m.setOnClickListener{clickLetter('m')
+            m.setBackgroundColor(Color.RED)}
+        n.setOnClickListener{clickLetter('n')
+            n.setBackgroundColor(Color.RED)}
+        o.setOnClickListener{clickLetter('o')
+            o.setBackgroundColor(Color.RED)}
+        p.setOnClickListener{clickLetter('p')
+            p.setBackgroundColor(Color.RED)}
+        q.setOnClickListener{clickLetter('q')
+            q.setBackgroundColor(Color.RED)}
+        r.setOnClickListener{clickLetter('r')
+            r.setBackgroundColor(Color.RED)}
+        s.setOnClickListener{clickLetter('s')
+            s.setBackgroundColor(Color.RED)}
+        t.setOnClickListener{clickLetter('t')
+            t.setBackgroundColor(Color.RED)}
+        u.setOnClickListener{clickLetter('u')
+            u.setBackgroundColor(Color.RED)}
+        v.setOnClickListener{clickLetter('v')
+            v.setBackgroundColor(Color.RED)}
+        w.setOnClickListener{clickLetter('w')
+            w.setBackgroundColor(Color.RED)}
+        x.setOnClickListener{clickLetter('x')
+            x.setBackgroundColor(Color.RED)}
+        y.setOnClickListener{clickLetter('y')
+            y.setBackgroundColor(Color.RED)}
+        z.setOnClickListener{clickLetter('z')
+            z.setBackgroundColor(Color.RED)}
 
     }
 
@@ -101,12 +210,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
-            R.id.languageSettings ->{
-                val intent = Intent(this@MainActivity, LanguageActivity::class.java)
-                actualLanguage = intent.getStringExtra("actualLanguage").toString()
-                startActivity(intent)
-            }
+            R.id.languageSettings -> startLanguageActivity()
+            else -> return super.onOptionsItemSelected(item)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -161,9 +268,18 @@ class MainActivity : AppCompatActivity() {
 
     fun newGame():Void?
     {
+        colorReset()
         gameOver = false
         mistakes = 0
         spinnerValue = spinner.selectedItem.toString()
+        if(format.equals("English"))
+        {
+            stringArray = resources.getStringArray(R.array.wordsEN)
+        }
+        else if (format.equals("Polish"))
+        {
+            stringArray = resources.getStringArray(R.array.wordsPL)
+        }
         wordToFind = getRandomWord(spinnerValue)
         word = java.lang.StringBuilder(wordToFind.length)
         usedLetters = java.lang.StringBuilder(26)
